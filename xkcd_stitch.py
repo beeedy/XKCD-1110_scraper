@@ -3,10 +3,13 @@ import os
 
 pathToSearchIn = "/Users/broderickcarlin/Desktop/xkcd/"
 
-width = 165888
-height = 79872
+width = 147456
+height = 65536
 
-blank_image = Image.new("L", (width, height),128)
+blank_image = Image.new("L", (width, height),0)
+sky_image = Image.new("L",(width,26624),255)
+
+blank_image.paste(sky_image, (0,0))
 
 count = 0
 total = 0
@@ -27,7 +30,7 @@ for picture_name in os.listdir(pathToSearchIn):
         y += 1
     if(x>0):
         x -= 1
-    blank_image.paste(cur_image, (x*2048 + width/2 - 1024*7, y*-2048 + height/2 + 1024))
+    blank_image.paste(cur_image, (x*2048 + width/2 - 1024*6, y*-2048 + height/2 - 1024*6))
 
 blank_image.save(pathToSearchIn + 'xkcdAll.png');
 print "Completed!"
